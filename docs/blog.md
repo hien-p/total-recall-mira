@@ -2,9 +2,9 @@
 
 _How Mira uses Tatum and Walrus Memory, and how she learns what you care about over time. A Track 3 (Consumer Finance Apps) entry to the Walrus × Tatum "Total Recall" hackathon._
 
-![Mira: the money friend you text before you buy](https://raw.githubusercontent.com/hien-p/total-recall-mira/main/docs/media/banner.png?v=2)
+![Mira: the money friend you text before you buy](https://raw.githubusercontent.com/tung-lee/total-recall-mira/main/docs/media/banner.png?v=2)
 
-**Live:** [mira-flax.vercel.app](https://mira-flax.vercel.app) · **Restored Mainnet profile:** [mira-flax.vercel.app/#/chat?me=mira7x9k2p4q8w1n5v3c](https://mira-flax.vercel.app/#/chat?me=mira7x9k2p4q8w1n5v3c) · **Code:** [github.com/hien-p/total-recall-mira](https://github.com/hien-p/total-recall-mira)
+**Live:** [mira-flax.vercel.app](https://mira-flax.vercel.app) · **Restored Mainnet profile:** [mira-flax.vercel.app/#/chat?me=mira7x9k2p4q8w1n5v3c](https://mira-flax.vercel.app/#/chat?me=mira7x9k2p4q8w1n5v3c) · **Code:** [github.com/tung-lee/total-recall-mira](https://github.com/tung-lee/total-recall-mira)
 
 ## The moment before you buy
 
@@ -14,7 +14,7 @@ The ten seconds that matter happen earlier, while you are standing in a store or
 
 Mira is a money friend you text in that ten-second window. You do not connect a bank login or maintain a spreadsheet. Instead, you text what you spend the way you would text a friend, ask Mira before you buy something you are on the fence about, and tap once to move the money you chose not to spend into your goal pocket.
 
-![Six scenes from Mira: spend tracking, asking before you buy, skipping and saving on Sui via Tatum, writing typed lines to Walrus Memory, adapting impulse thresholds, and restoring on a new phone](https://raw.githubusercontent.com/hien-p/total-recall-mira/main/docs/media/film-strip.jpg)
+![Six scenes from Mira: spend tracking, asking before you buy, skipping and saving on Sui via Tatum, writing typed lines to Walrus Memory, adapting impulse thresholds, and restoring on a new phone](https://raw.githubusercontent.com/tung-lee/total-recall-mira/main/docs/media/film-strip.jpg)
 
 ## What Mira does
 
@@ -25,13 +25,13 @@ Everything happens in one chat thread that feels like iMessage:
 3. **Ask before you buy:** Text `"should i buy the $48 serum?"` before checking out. Mira checks three stores (`Shelf` at \$41, `Basket` at \$45, `Glow & Co` at \$48), checks your budget and caps, recalls what you decided on similar buys from Walrus Memory, and shows what \$41 is worth toward your goal (`3% of your $1,200 Tokyo trip`).
 4. **Skip it and move the money:** Tap `"skip it, move $41 to tokyo"` on the advice card. Mira moves \$41 from your `Spending` pocket into your `tokyo` pocket on Sui testnet and records that you skipped a \$40 beauty buy so she knows where your line is next time.
 
-![Three steps in the thread: logging daily spends, asking whether to buy the $48 serum, and moving $41 into the Tokyo pocket](https://raw.githubusercontent.com/hien-p/total-recall-mira/main/docs/media/site-thread.jpg)
+![Three steps in the thread: logging daily spends, asking whether to buy the $48 serum, and moving $41 into the Tokyo pocket](https://raw.githubusercontent.com/tung-lee/total-recall-mira/main/docs/media/site-thread.jpg)
 
 ## How it uses Tatum
 
 A consumer finance app loses the user the moment it asks them to install a wallet extension, buy SUI for gas, or sign a hex digest just to set \$41 aside. In Mira, Sui holds the pockets and Tatum is how the server talks to Sui. Every onchain call goes through `@mira/chain` over Tatum's native Sui Testnet gRPC gateway (`https://sui-testnet.gateway.tatum.io`) with the `x-api-key` header in gRPC metadata, and nothing in the repo calls JSON-RPC.
 
-![Skip it, save it: moving $41 from Spending to the Tokyo pocket on Sui testnet through Tatum gRPC](https://raw.githubusercontent.com/hien-p/total-recall-mira/main/docs/media/site-tatum.jpg)
+![Skip it, save it: moving $41 from Spending to the Tokyo pocket on Sui testnet through Tatum gRPC](https://raw.githubusercontent.com/tung-lee/total-recall-mira/main/docs/media/site-tatum.jpg)
 
 Each user code deterministically derives two Sui testnet addresses: a `Spending` pocket and a `Goal` pocket (`tokyo`). We published a Move module (`mira_cash::cash`, package [`0x160a224d8627ec9fc50ff2192fb4eb405e9a3de3e72d329199c72cd725d27721`](https://suiscan.xyz/testnet/object/0x160a224d8627ec9fc50ff2192fb4eb405e9a3de3e72d329199c72cd725d27721)) with 2 decimals so `100` on chain equals `$1.00`. When you set your first goal, the server mints `$100.00` of `CASH` into your `Spending` pocket so you have test money ready to move.
 
@@ -43,9 +43,9 @@ Under the hood, `@mysten/sui`'s `SuiGrpcClient` defaults to `grpc-web`, whereas 
 
 Two properties of Walrus Memory shaped Mira's design from day one: memories on Walrus cannot be deleted, and the relayer sees plaintext before encrypting blobs for storage. Putting raw bank descriptions, exact dollar amounts, or friends' names (`"dinner with An & Bao $28.00"`) into permanent storage would leak private spending history.
 
-Mira solves this by splitting state across a strict boundary ([ADR-0003](https://github.com/hien-p/total-recall-mira/blob/main/docs/adr/0003-ledger-on-device-typed-lines-in-memory.md)): exact numbers and names stay in `localStorage` on your phone, while rounded lessons go to Walrus Memory on mainnet.
+Mira solves this by splitting state across a strict boundary ([ADR-0003](https://github.com/tung-lee/total-recall-mira/blob/main/docs/adr/0003-ledger-on-device-typed-lines-in-memory.md)): exact numbers and names stay in `localStorage` on your phone, while rounded lessons go to Walrus Memory on mainnet.
 
-![Exact numbers stay on your phone while typed, rounded lessons travel on Walrus Memory](https://raw.githubusercontent.com/hien-p/total-recall-mira/main/docs/media/site-memory.jpg)
+![Exact numbers stay on your phone while typed, rounded lessons travel on Walrus Memory](https://raw.githubusercontent.com/tung-lee/total-recall-mira/main/docs/media/site-memory.jpg)
 
 The browser never sends free text to Walrus. When you set a plan, teach Mira a rule, or answer a buy nudge, the server builds a typed `MemoryFact`, rounds dollar amounts to the nearest \$5 under \$50 or \$10 from \$50 up (`$41` becomes `about $40`), checks category and goal names against closed allowlists, and formats one canonical line:
 
@@ -75,7 +75,7 @@ Each user code gets four namespaces inside Mira's mainnet account (`mira:prefs:<
 
 The point of memory is that Mira acts differently on turn ten than she did on turn one, and names the memory that changed her answer.
 
-![Memories that change what Mira does next: skipping a $40 serum lowers the beauty flag line to $30, catching a $32 lipstick next time](https://raw.githubusercontent.com/hien-p/total-recall-mira/main/docs/media/site-learning.jpg)
+![Memories that change what Mira does next: skipping a $40 serum lowers the beauty flag line to $30, catching a $32 lipstick next time](https://raw.githubusercontent.com/tung-lee/total-recall-mira/main/docs/media/site-learning.jpg)
 
 ### Rules you teach her (`RULE`)
 
@@ -95,11 +95,11 @@ Buying past a nudge pushes the flag line in the other direction. In `shopping`, 
 
 Click **Continue on your phone** in the desktop header (or open [`mira-flax.vercel.app/#/chat?me=mira7x9k2p4q8w1n5v3c`](https://mira-flax.vercel.app/#/chat?me=mira7x9k2p4q8w1n5v3c) in a fresh browser window). The new device has an empty `localStorage`, so none of your itemised coffee or dinner receipts leave the old phone.
 
-![New phone, same Mira: scanning the QR code restores 9 lines from Walrus Memory and reads pocket balances from Sui testnet through Tatum](https://raw.githubusercontent.com/hien-p/total-recall-mira/main/docs/media/site-new-phone.jpg)
+![New phone, same Mira: scanning the QR code restores 9 lines from Walrus Memory and reads pocket balances from Sui testnet through Tatum](https://raw.githubusercontent.com/tung-lee/total-recall-mira/main/docs/media/site-new-phone.jpg)
 
 On boot, the new phone recalls all four Walrus Memory namespaces for your code and reads your Sui pockets through Tatum. Within two seconds, Mira greets you with your \$400 monthly budget, your \$1,200 trip goal, your weekly eating-out and monthly beauty caps, your `coffee → eating out` and `matcha → treats` rules, your learned \$20 beauty flag line and \$60 shopping flag line, and `MONTH · 2026-11 · spent about $250` so your \$150 remaining November budget is ready before you send a single message.
 
-![Live Mira desktop view showing the restored chat thread alongside all 12 recalled Walrus Mainnet memories](https://raw.githubusercontent.com/hien-p/total-recall-mira/main/docs/media/site-chat.jpg)
+![Live Mira desktop view showing the restored chat thread alongside all 12 recalled Walrus Mainnet memories](https://raw.githubusercontent.com/tung-lee/total-recall-mira/main/docs/media/site-chat.jpg)
 
 ### Twelve verified memories on Walrus Mainnet
 
@@ -122,7 +122,7 @@ All 12 lines below are stored on Walrus Mainnet under Mira's account (`0x8002385
 
 ## How it's built
 
-![Two apps, one memory: React web app on Vercel, Node TypeScript API on Railway, Walrus Memory on Mainnet, and Tatum Sui gRPC on Testnet](https://raw.githubusercontent.com/hien-p/total-recall-mira/main/docs/media/site-hood.jpg)
+![Two apps, one memory: React web app on Vercel, Node TypeScript API on Railway, Walrus Memory on Mainnet, and Tatum Sui gRPC on Testnet](https://raw.githubusercontent.com/tung-lee/total-recall-mira/main/docs/media/site-hood.jpg)
 
 1. **Web (`web/`):** React 18 and Vite on Vercel ([mira-flax.vercel.app](https://mira-flax.vercel.app)). The phone frame, receipt cards, advice cards, memory drawer, and QR handoff all run against `/api/*` on the same origin.
 2. **API (`server/`):** Node 24 TypeScript server on Railway with zero framework dependencies. It keeps the Walrus Memory, Tatum, and Sui sponsor keys on the server, formats and validates memory lines, and executes sponsored Sui pocket moves.
@@ -133,7 +133,7 @@ All 12 lines below are stored on Walrus Mainnet under Mira's account (`0x8002385
    4. `mira_cash::cash`: Sui Move contract on testnet for user `Spending` and `Goal` pockets.
 4. **Tests and showreel (`e2e/`, `video/`):** 91 unit tests across 14 files (`npm test`) and a 16-step Playwright browser E2E (`npm run e2e`) that walks the entire loop from first budget to new-phone restore. The 2-minute showreel (`video/render.ts`) is rendered frame by frame from code at 1080p60 with synthesised sound cues.
 
-Every architecture choice is recorded in [`docs/adr/`](https://github.com/hien-p/total-recall-mira/blob/main/docs/adr/README.md) (ADR-0001 through ADR-0009), and the whole app runs locally in preview mode with a single command (`npm run dev`).
+Every architecture choice is recorded in [`docs/adr/`](https://github.com/tung-lee/total-recall-mira/blob/main/docs/adr/README.md) (ADR-0001 through ADR-0009), and the whole app runs locally in preview mode with a single command (`npm run dev`).
 
 ## What's next
 
