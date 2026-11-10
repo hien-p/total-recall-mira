@@ -2,7 +2,7 @@
 
 - **Status:** Accepted
 - **Date:** 2026-11-03
-- **Deciders:** Hien ("FE deploy vercel, còn lại railway cá nhân của tôi")
+- **Deciders:** Tung
 - **Supersedes:** the deploy bullet of ADR-0007 (Railway served both)
 
 ## Context
@@ -14,7 +14,7 @@
 
 ## Decision
 
-- **Vercel serves the web app** (team `hien-ps-projects`, project `mira`, https://mira-flax.vercel.app).
+- **Vercel serves the web app** (project `mira`, https://mira-flax.vercel.app).
   `vercel.json` at the repo root installs and builds `web/` and publishes `web/dist`.
 - **Vercel rewrites `/api/*` to the Railway API**, so the browser stays on one origin: no CORS, no API URL
   in the bundle, no keys on Vercel.
