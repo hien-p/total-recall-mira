@@ -79,8 +79,8 @@ Private by design. Memories can't be deleted and the relayer sees plaintext, so 
 Tatum for every onchain call. Each user's pockets are Sui testnet addresses. Balances, transfer building, execution and confirmation all go through Tatum's native Sui gRPC gateway (GetBalance, ListOwnedObjects, SimulateTransaction, ExecuteTransaction, GetTransaction), paced and counted, with no JSON-RPC. The operator sponsors gas, so a $41 move moves exactly $41 of test money and nobody holds SUI.
 
 Live: https://mira-flax.vercel.app
-Blog: https://github.com/hien-p/total-recall-mira/blob/main/docs/blog.md
-Code: https://github.com/hien-p/total-recall-mira
+Blog: https://github.com/tung-lee/total-recall-mira/blob/main/docs/blog.md
+Code: https://github.com/tung-lee/total-recall-mira
 ```
 
 ### Short demo video (2 to 3 min) \* ⏳
@@ -90,7 +90,7 @@ Upload `artifacts/mira-showreel.mp4` (`2:01`, `1080p60`) to YouTube (public or u
 ### GitHub repo \* ✅
 
 ```text
-https://github.com/hien-p/total-recall-mira
+https://github.com/tung-lee/total-recall-mira
 ```
 
 ### Additional documentation _(optional)_ ✅
@@ -98,7 +98,7 @@ https://github.com/hien-p/total-recall-mira
 Swap in the external DEV.to / Medium / Hashnode URL if published there, or paste the canonical blog URL in the repo:
 
 ```text
-https://github.com/hien-p/total-recall-mira/blob/main/docs/blog.md
+https://github.com/tung-lee/total-recall-mira/blob/main/docs/blog.md
 ```
 
 ## 04 Feedback
