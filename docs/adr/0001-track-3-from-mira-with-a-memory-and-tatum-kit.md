@@ -24,7 +24,7 @@
 
 ## Decision
 
-- **Fork** Mira as [hien-p/total-recall-mira](https://github.com/hien-p/total-recall-mira); the
+- **Fork** Mira as [tung-lee/total-recall-mira](https://github.com/tung-lee/total-recall-mira); the
   `upstream` remote is the original.
 - **Bring the kit in as npm workspaces:**
   - `packages/memory` is `@mira/memory`, and `packages/chain` is `@mira/chain`.
